@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "fs": "0.0.1-security",
+    "mocha": "^5.2.0",
     "solc": "^0.4.24"
   }
 }
