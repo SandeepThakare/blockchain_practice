@@ -4,3 +4,4 @@
 ssh
 *.zip
 *.pem
+package-lock.json
