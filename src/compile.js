@@ -1,6 +1,6 @@
-const path = require('path');
-const fs = require('fs');
-const solc = require('solc');
+import path from 'path';
+import fs from 'fs';
+import solc from 'solc';
 
 const inboxPath = path.resolve(__dirname, "../contracts", "inbox.sol");
 const source = fs.readFileSync(inboxPath, "UTF-8");
