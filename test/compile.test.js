@@ -35,6 +35,10 @@ describe("Test cases for Car class : ", () => {
         assert.equal(carObj.getCarStatus(), "stopped", "It shoild be run");
     });
 
+    it("It should be return car status is string or not", () => {
+        assert.isString(carObj.getCarStatus(), "It shoild be a string");
+    });
+
     it("It should be return price of car", () => {
         assert.equal(carObj.getCarPrice(), "800K", "It shoild return price of car");
     });
