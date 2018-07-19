@@ -1,5 +1,6 @@
 
-var assert = require('assert');
+var chai = require('chai');
+var assert = chai.assert
 
 class Car {
 
@@ -46,7 +47,20 @@ describe("Test cases for Car class : ", () => {
 
 describe("Test cases for Person class : ", () => {
 
-    it("Testting case", () => {
-        assert.equal("Ok", "Ok", "Testing");
+    let personObj;
+    beforeEach('Setting up the Persons object', () => {
+        personObj = new Person();
+    });
+
+    it("It should return person name", () => {
+        assert.equal(personObj.getPersonName(), "Sandeep", "Returning name of person");
+    });
+
+    it("It should return persons age", () => {
+        assert.equal(personObj.getPersonAge(), 25, "Returning age of person");
+    });
+
+    it("It should return person age in number", () => {
+        assert.isNotString(personObj.getPersonAge(), "Return integer - Number");
     });
 });
