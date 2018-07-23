@@ -15,7 +15,7 @@ beforeEach(async() => {
     .deploy({ date:bytecode })
     .send({
         from: accounts[0],
-        gas: 1000000
+        gas: '1000000'
     })
 });
 
