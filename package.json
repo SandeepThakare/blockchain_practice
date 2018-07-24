@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha --compilers js:babel-register test/lottery.test.js"
   },
   "author": "sandeep thakare",
   "license": "ISC",
