@@ -38,16 +38,22 @@ describe('Lottery Contract Initialization', () => {
     it('allows one account to enter', async() => {
         await lottery.methods.enter().send({
             from: accounts[0],
-            value: web3.utils.toWei('0.02', 'ether')
+            value: web3.utils.toWei('10', 'ether')
         });
 
         const players = await lottery.methods.getPlayers().call({
             from: accounts[0]
         });
 
+        // const balance = await lottery.methods.getBalance().call();
+
+        // console.log(balance)
+
         // console.log(players[0], accounts[0])
 
-        assert.equal(accounts[0], players[0], "first index of array should be equal");
-        assert.equal(1, players.length);
+        assert.equal(accounts[0], players[0], 'first index of array should be equal');
+        assert.equal(1, players.length, 'Its an first entry in index');
     });
+
+    // it('')
 });
