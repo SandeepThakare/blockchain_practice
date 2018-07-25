@@ -14,12 +14,12 @@ beforeEach(async() => {
 
     // contract = web3.eth.Contract(lotteryData.default.interface);
 
-    lottery = await new web3.eth.Contract(JSON.parse(lotteryData.default.interface))
+    lottery = await new web3.eth.Contract(JSON.parse(lotteryData.default.interface)) //Interface is also called as ABI
     .deploy({ date : lotteryData.default.bytecode })
     .send({
         from: accounts[0],  
         gas: '1000000'
-    })
+    });
 
     // lottery = contract.new({
     //     data: '0x' + lotteryData.default.bytecode,
@@ -33,5 +33,5 @@ console.log("Lottery ====> ", lottery);
 describe('Lottery Contract Initialization', () => {
     it('deploys a contract', () => {
         assert.ok(lottery.options.address);
-    })
-})
+    });
+});
