@@ -9,7 +9,7 @@ let lottery;
 let accounts;
 let contract;
 
-beforeEach(async() => {
+before(async() => {
     accounts = await web3.eth.getAccounts();
 
     // contract = web3.eth.Contract(lotteryData.default.interface);
@@ -20,7 +20,7 @@ beforeEach(async() => {
         from: accounts[0],  
         gas: '1000000'
     });
-    
+    // console.log('run');
     // console.log("Lottery ====> ", lottery);
 
     // lottery = contract.new({
@@ -55,5 +55,27 @@ describe('Lottery Contract Initialization', () => {
         assert.equal(1, players.length, 'Its an first entry in index');
     });
 
-    // it('')
+    it('allow multiple accounts to enter in lottery', async() => {
+
+        let players;
+
+        for (let index = 0; index < 4; index++) {
+            await lottery.methods.enter().send({
+                from: accounts[index],
+                value: web3.utils.toWei('10', 'ether')
+            });
+
+            players = await lottery.methods.getPlayers().call({
+                from: accounts[0]
+            });
+
+            //Here players[index+1] - because we use before instead of beforeEach
+            //which is executed only once for every describe 
+            //so aur players array is not reinitialize for every test case
+            assert.equal(accounts[index], players[index+1], `address in array indexes - ${index} should be equal`);
+        }
+        assert.equal(5, players.length, 'length of players array should be 5');
+        const balance = await lottery.methods.getBalance().call();
+        console.log(balance);
+    });
 });
