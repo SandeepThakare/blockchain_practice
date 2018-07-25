@@ -89,14 +89,28 @@ describe('Lottery Contract Initialization', () => {
                 from: accounts[0]
             });
 
-            console.log('Array length - ', players.length);
-
             assert.equal(5, players.length, 'Should not add address in array');
             assert.equal(false);
         }
         catch (err) {
+            players = await lottery.methods.getPlayers().call({
+                from: accounts[0]
+            });
             console.log('Array length - ', players.length);
             assert(err);
         }
     });
+
+    it('Only manager can pick the winner', async () => {
+        try {
+            await lottery.methods.pickWinner().send({
+                from: accounts[1]
+            });
+            assert(false);
+        }
+        catch(err) {
+            console.log(err);
+            assert(err, null);
+        }
+    })
 });
