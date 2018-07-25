@@ -8,6 +8,7 @@ import lotteryData from '../src/lottery.js'
 let lottery;
 let accounts;
 let contract;
+let players;
 
 before(async() => {
     accounts = await web3.eth.getAccounts();
@@ -57,8 +58,6 @@ describe('Lottery Contract Initialization', () => {
 
     it('allow multiple accounts to enter in lottery', async() => {
 
-        let players;
-
         for (let index = 0; index < 4; index++) {
             await lottery.methods.enter().send({
                 from: accounts[index],
@@ -72,10 +71,32 @@ describe('Lottery Contract Initialization', () => {
             //Here players[index+1] - because we use before instead of beforeEach
             //which is executed only once for every describe 
             //so aur players array is not reinitialize for every test case
-            assert.equal(accounts[index], players[index+1], `address in array indexes - ${index} should be equal`);
+            assert.equal(accounts[index], players[index+1], `address in array index - ${index} should be equal`);
         }
         assert.equal(5, players.length, 'length of players array should be 5');
         const balance = await lottery.methods.getBalance().call();
         console.log(balance);
+    });
+
+    it('require minimum amount of ether to enter', async() => {
+        try {
+            await lottery.methods.enter().send({
+                from: accounts[0],
+                value: 0
+            });
+
+            players = await lottery.methods.getPlayers().call({
+                from: accounts[0]
+            });
+
+            console.log('Array length - ', players.length);
+
+            assert.equal(5, players.length, 'Should not add address in array');
+            assert.equal(false);
+        }
+        catch (err) {
+            console.log('Array length - ', players.length);
+            assert(err);
+        }
     });
 });
