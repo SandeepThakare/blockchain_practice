@@ -19,7 +19,7 @@ contract Lottery {
         return uint(keccak256(block.difficulty, now, players));
     }
     
-    function pickWinner() public {
+    function pickWinner() public restricted {
         // address frod = 0x706043818BFB7E199DBb0bcf55AB6e0e309291A4;
         uint index = random() % players.length;
         players[index].transfer(this.balance);

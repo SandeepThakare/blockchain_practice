@@ -68,9 +68,9 @@ describe('Lottery Contract Initialization', () => {
                 from: accounts[0]
             });
 
-            //Here players[index+1] - because we use before instead of beforeEach
-            //which is executed only once for every describe 
-            //so aur players array is not reinitialize for every test case
+            // Here players[index+1] - because we use before instead of beforeEach
+            // which is executed only once for every describe 
+            // so aur players array is not reinitialize for every test case
             assert.equal(accounts[index], players[index+1], `address in array index - ${index} should be equal`);
         }
         assert.equal(5, players.length, 'length of players array should be 5');
@@ -109,8 +109,32 @@ describe('Lottery Contract Initialization', () => {
             assert(false);
         }
         catch(err) {
-            console.log(err);
+            // console.log(err);
             assert(err, null);
         }
-    })
+    });
+
+    it('pick winner and reset array', async() => {
+
+        players = await lottery.methods.getPlayers().call({
+            from: accounts[0]
+        });
+
+        const initialBalance = await lottery.methods.getBalance().call();
+        console.log('Initial Balance - ', initialBalance);
+
+        await lottery.methods.pickWinner().send({
+            from: accounts[0]
+        });
+
+        const finalBalance = await lottery.methods.getBalance().call();
+        console.log('Final Balance - ', finalBalance);
+
+        for (let index = 0; index < players.length - 1; index++) {
+            console.log(`Player ${index} - ${players[index]} : ${JSON.stringify( await web3.eth.getBalance(accounts[index]))}`);
+        }
+
+        assert(finalBalance == 0);
+
+    });
 });
