@@ -2,7 +2,7 @@ import HDWalletProvider from 'truffle-hdwallet-provider';
 import Web3 from 'web3';
 import Contract from './lottery';
 
-console.log('Bytecode -- ', Contract.bytecode);
+// console.log('Bytecode -- ', Contract.bytecode);
 console.log('Interface -- ', Contract.interface);
 
 const provider = new HDWalletProvider(
@@ -11,16 +11,16 @@ const provider = new HDWalletProvider(
 );
 const web3 = new Web3(provider);
 
-// const deploy = async () => {
-//     const accounts = await web3.eth.getAccounts();
+const deploy = async () => {
+    const accounts = await web3.eth.getAccounts();
 
-//     console.log('Attempting to deploy from account', accounts);
+    console.log('Attempting to deploy from account', accounts);
 
-//     const result = await new web3.eth.Contract(JSON.parse(interface))
-//         .deploy({ data: bytecode })
-//         .send({ gas: '1000000', from: accounts[0] });
+    const result = await new web3.eth.Contract(JSON.parse(Contract.interface))
+        .deploy({ data: '0x' + Contract.bytecode })
+        .send({ gas: '1000000', from: accounts[0] });
 
-//     console.log(result.options.address);
+    console.log(result.options.address);
 
-// };
-// deploy();
+};
+deploy();
