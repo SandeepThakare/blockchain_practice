@@ -1,4 +1,4 @@
 require('babel-register');
 require('babel-polyfill');
 
-require('./src/lottery.js');
+require('./src/compile.js');
