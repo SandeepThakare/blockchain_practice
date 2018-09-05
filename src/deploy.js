@@ -2,7 +2,8 @@ import HDWalletProvider from 'truffle-hdwallet-provider';
 import Web3 from 'web3';
 import Contract from './lottery';
 
-console.log(Contract);
+console.log('Bytecode -- ', Contract.bytecode);
+console.log('Interface -- ', Contract.interface);
 
 const provider = new HDWalletProvider(
     'polar online naive six govern width deliver negative common prison vapor orbit',//nounce
