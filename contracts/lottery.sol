@@ -11,7 +11,10 @@ contract Lottery {
     
     function enter() public payable {
         
-        require(msg.value > .01 ether);
+        require(
+            msg.value > .01 ether,
+            "Must send an ether amount > .01 ether"
+            );
         players.push(msg.sender);
     }
     
@@ -27,7 +30,10 @@ contract Lottery {
     }
     
     modifier restricted() {
-        require(msg.sender == manager);
+        require(
+            msg.sender == manager,
+            "Sender must be a manager"
+            );
         _;
     }
 
