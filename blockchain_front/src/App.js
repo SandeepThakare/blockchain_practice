@@ -10,7 +10,9 @@ class App extends Component {
     super(props);
 
     this.state = {
-      manager: ''
+      manager: '',
+      players: [],
+      balance: ''
     }
   }
 
@@ -18,8 +20,10 @@ class App extends Component {
 
     console.log('Methods ---', lottery.methods)
     const manager = await lottery.methods.manager().call();
+    const players = await lottery.methods.getPlayers().call();
+    const balance = await web3.eth.getBalance(lottery.options.address);
 
-    this.setState({ manager })
+    this.setState({ manager, players, balance });
   }
 
   render() {
@@ -32,7 +36,11 @@ class App extends Component {
         </header>
         <div>
           {/* <h2> <b> ----------  ---------- </b></h2> */}<br/><br/>
-          <p> This contract is managed by {this.state.manager} </p>
+          <p> 
+            This contract is managed by <b>{this.state.manager}</b> <br/><br />
+            There are currently <b>{ this.state.players.length }</b> <br /><br />
+            competing to win <b>{ web3.utils.fromWei(this.state.balance, 'ether') }</b> ether's.
+          </p>
         </div>
       </div>
     );
