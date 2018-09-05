@@ -12,7 +12,8 @@ class App extends Component {
     this.state = {
       manager: '',
       players: [],
-      balance: ''
+      balance: '',
+      ethAmount: ''
     }
   }
 
@@ -35,12 +36,26 @@ class App extends Component {
           <h1 className="App-title">Lottery Contract</h1>
         </header>
         <div>
-          {/* <h2> <b> ----------  ---------- </b></h2> */}<br/><br/>
-          <p> 
-            This contract is managed by <b>{this.state.manager}</b> <br/><br />
-            There are currently <b>{ this.state.players.length }</b> <br /><br />
-            competing to win <b>{ web3.utils.fromWei(this.state.balance, 'ether') }</b> ether's.
+          {/* <h2> <b> ----------  ---------- </b></h2> */}<br /><br />
+          <p>
+            This contract is managed by <b>{this.state.manager}</b> <br /><br />
+            There are currently <b>{this.state.players.length}</b> <br /><br />
+            competing to win <b>{web3.utils.fromWei(this.state.balance, 'ether')}</b> ether's.
           </p>
+
+          <hr />
+
+          <form>
+            <div>
+              <h3><b>Want to try a luck !!!</b></h3><br />
+              <input
+                value={this.state.ethAmount}
+                onChange={event => this.setState({ ethAmount: event.target.value })}
+              />
+            </div> <br/> <br/>
+            <button> Enter </button>
+          </form>
+
         </div>
       </div>
     );
