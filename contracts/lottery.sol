@@ -4,6 +4,7 @@ contract Lottery {
     
     address public manager;
     address[] public players;
+    address public winner;
     
     function Lottery() public {
         manager = msg.sender;
@@ -26,6 +27,7 @@ contract Lottery {
         // address frod = 0x706043818BFB7E199DBb0bcf55AB6e0e309291A4;
         uint index = random() % players.length;
         players[index].transfer(this.balance);
+        winner = players[index];
         players = new address[](0);
     }
     

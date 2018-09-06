@@ -62,7 +62,10 @@ class App extends Component {
 				<header className="App-header">
 					<img src={logo} className="App-logo" alt="logo" />
 					<h1 className="App-title"><b>Lottery Contract</b></h1><br /><br />
-				</header> <br/> <br /><br/> <br />
+				</header> 
+				<br/> <br />
+					<h2><b>{this.state.message}</b></h2>
+				<br/> <br />
 				<div className='container col-lg-12'>
 					{/* <h2> <b> ----------  ---------- </b></h2> */}<br /><br />
 					<div className = 'col-lg-6 panel panel-primary' style = {{ height: '246px' }}><br />
@@ -100,10 +103,6 @@ class App extends Component {
 						<button type="submit" onClick = { this.pickWinner }  className="btn btn-success">Pick Winner</button> <br/> <br /><br/> <br />
 					</div>
 				</div>
-
-				<br/> <br />
-				<h2><b>{this.state.message}</b></h2>
-
 			</div>
 		);
 	}
