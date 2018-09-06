@@ -13,7 +13,8 @@ class App extends Component {
 			manager: '',
 			players: [],
 			balance: '',
-			ethAmount: ''
+			ethAmount: '',
+			message: ''
 		}
 	}
 
@@ -29,12 +30,16 @@ class App extends Component {
 
 	onSubmit = async (event) => {
 		event.preventDefault();
-		const accounts = await web3.eth.getAcclounts();
+		const accounts = await web3.eth.getAccounts();
+
+		this.setState({ message: 'Waiting for your transaction to succeeded .....' })
 
 		await lottery.methods.enter().send({
 			from: accounts[0],
 			value: web3.utils.toWei(this.state.ethAmount, 'ether')
-		})
+		});
+
+		this.setState({ message: 'You are successfully registered in lottery contract.' })
 
 	}
 
@@ -75,6 +80,7 @@ class App extends Component {
 							<button type="submit" className="btn btn-success">Enter</button>
 						</form>
 					</div>
+					<h2><b>{this.state.message}</b></h2>
 				</div>
 			</div>
 		);
