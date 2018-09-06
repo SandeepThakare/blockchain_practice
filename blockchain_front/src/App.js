@@ -43,6 +43,18 @@ class App extends Component {
 
 	}
 
+	pickWinner = async (event) => {
+		const accounts = await web3.eth.getAccounts();
+
+		this.setState({ message: 'Please wait, we are picking up a winner .....' });
+
+		await lottery.methods.pickWinner().send({
+			from: accounts[0],
+		});
+
+		this.setState({ message: 'Congrats winner has been picked. Please check your account balance.' })
+	}
+
 	render() {
 		// web3.eth.getAccounts().then(console.log);
 		return (
@@ -51,17 +63,17 @@ class App extends Component {
 					<img src={logo} className="App-logo" alt="logo" />
 					<h1 className="App-title"><b>Lottery Contract</b></h1><br /><br />
 				</header> <br/> <br /><br/> <br />
-				<div className='container col-lg-12' style = {{ border: '1px solid', marginLeft: '5px' }}>
+				<div className='container col-lg-12'>
 					{/* <h2> <b> ----------  ---------- </b></h2> */}<br /><br />
-					<div className = 'col-lg-5'><br />
+					<div className = 'col-lg-5 panel panel-primary'><br />
 						<p>
 							This contract is managed by <b>{this.state.manager}</b> <br /><br />
 							There are currently <b>{this.state.players.length}</b> user's registered<br /><br />
 							competing to win <b>{web3.utils.fromWei(this.state.balance, 'ether')}</b> ether's.
 						</p>
 
-					</div>
-					<div className = 'col-lg-5'>
+					</div> &nbsp;&nbsp;
+					<div className = 'col-lg-5 panel panel-primary'>
 						<form onSubmit={this.onSubmit}>
 							<h3><b>Want to try your luck !!!</b></h3><br />
 							<div className="form-group col-lg-12">
@@ -79,9 +91,15 @@ class App extends Component {
 							</div>
 							<button type="submit" className="btn btn-success">Enter</button> <br/> <br /><br/> <br />
 						</form>
-					</div> <br/> <br /><br/> <br />
-					<h2><b>{this.state.message}</b></h2>
+					</div> 
 				</div>
+				<div>
+					<button type="submit" onClick = { this.pickWinner }  className="btn btn-info">Pick Winner</button> <br/> <br /><br/> <br />
+				</div>
+
+				<br/> <br />
+				<h2><b>{this.state.message}</b></h2>
+
 			</div>
 		);
 	}
