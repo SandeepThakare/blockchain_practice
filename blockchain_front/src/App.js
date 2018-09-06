@@ -14,7 +14,8 @@ class App extends Component {
 			players: [],
 			balance: '',
 			ethAmount: '',
-			message: ''
+			message: '',
+			winnerAddress: ''
 		}
 	}
 
@@ -52,7 +53,11 @@ class App extends Component {
 			from: accounts[0],
 		});
 
+
+		const winner = await lottery.methods.winner().call();
+
 		this.setState({ message: 'Congrats winner has been picked. Please check your account balance.' })
+		this.setState({ winnerAddress: `And the Winner is ${winner}` });
 	}
 
 	render() {
@@ -64,7 +69,8 @@ class App extends Component {
 					<h1 className="App-title"><b>Lottery Contract</b></h1><br /><br />
 				</header> 
 				<br/> <br />
-					<h2><b>{this.state.message}</b></h2>
+					<h2><b>{this.state.message}</b></h2><br />
+					<h3><b>{this.state.winnerAddress}</b></h3>
 				<br/> <br />
 				<div className='container col-lg-12'>
 					{/* <h2> <b> ----------  ---------- </b></h2> */}<br /><br />
