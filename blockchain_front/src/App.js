@@ -65,15 +65,14 @@ class App extends Component {
 				</header> <br/> <br /><br/> <br />
 				<div className='container col-lg-12'>
 					{/* <h2> <b> ----------  ---------- </b></h2> */}<br /><br />
-					<div className = 'col-lg-5 panel panel-primary'><br />
+					<div className = 'col-lg-6 panel panel-primary' style = {{ height: '246px' }}><br />
 						<p>
 							This contract is managed by <b>{this.state.manager}</b> <br /><br />
 							There are currently <b>{this.state.players.length}</b> user's registered<br /><br />
 							competing to win <b>{web3.utils.fromWei(this.state.balance, 'ether')}</b> ether's.
 						</p>
-
-					</div> &nbsp;&nbsp;
-					<div className = 'col-lg-5 panel panel-primary'>
+					</div>
+					<div className = 'col-lg-6 panel panel-primary'>
 						<form onSubmit={this.onSubmit}>
 							<h3><b>Want to try your luck !!!</b></h3><br />
 							<div className="form-group col-lg-12">
@@ -89,12 +88,17 @@ class App extends Component {
 							<div className="checkbox">
 								{/* <label><input type="checkbox"/> Remember me</label> */}
 							</div>
-							<button type="submit" className="btn btn-success">Enter</button> <br/> <br /><br/> <br />
+							<button type="submit" className="btn btn-primary">Enter</button> <br/> <br /><br/> <br />
 						</form>
 					</div> 
 				</div>
 				<div>
-					<button type="submit" onClick = { this.pickWinner }  className="btn btn-info">Pick Winner</button> <br/> <br /><br/> <br />
+					<br /> <br /><br /><br />
+					<label> -------- Click button to pick a Winner -------- </label><br />
+					<label> (Only manager can pick a winner)</label><br /><br />
+					<div className="form-group col-lg-12">
+						<button type="submit" onClick = { this.pickWinner }  className="btn btn-success">Pick Winner</button> <br/> <br /><br/> <br />
+					</div>
 				</div>
 
 				<br/> <br />
