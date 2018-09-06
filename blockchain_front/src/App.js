@@ -67,11 +67,11 @@ class App extends Component {
 				<header className="App-header">
 					<img src={logo} className="App-logo" alt="logo" />
 					<h1 className="App-title"><b>Lottery Contract</b></h1><br /><br />
-				</header> 
-				<br/> <br />
+				</header> {this.state.message ?
+				<div><br/> <br />
 					<h2><b>{this.state.message}</b></h2><br />
 					<h3><b>{this.state.winnerAddress}</b></h3>
-				<br/> <br />
+				<br/> <br /></div> : null}
 				<div className='container col-lg-12'>
 					{/* <h2> <b> ----------  ---------- </b></h2> */}<br /><br />
 					<div className = 'col-lg-6 panel panel-primary' style = {{ height: '246px' }}><br />
