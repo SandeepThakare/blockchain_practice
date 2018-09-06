@@ -50,18 +50,18 @@ class App extends Component {
 				<header className="App-header">
 					<img src={logo} className="App-logo" alt="logo" />
 					<h1 className="App-title"><b>Lottery Contract</b></h1><br /><br />
-				</header>
-				<div className='container col-lg-12'>
+				</header> <br/> <br /><br/> <br />
+				<div className='container col-lg-12' style = {{ border: '1px solid', marginLeft: '5px' }}>
 					{/* <h2> <b> ----------  ---------- </b></h2> */}<br /><br />
-					<div className = 'col-lg-6'><br />
+					<div className = 'col-lg-5'><br />
 						<p>
 							This contract is managed by <b>{this.state.manager}</b> <br /><br />
-							There are currently <b>{this.state.players.length}</b> <br /><br />
+							There are currently <b>{this.state.players.length}</b> user's registered<br /><br />
 							competing to win <b>{web3.utils.fromWei(this.state.balance, 'ether')}</b> ether's.
 						</p>
 
 					</div>
-					<div className = 'col-lg-6'>
+					<div className = 'col-lg-5'>
 						<form onSubmit={this.onSubmit}>
 							<h3><b>Want to try your luck !!!</b></h3><br />
 							<div className="form-group col-lg-12">
@@ -77,9 +77,9 @@ class App extends Component {
 							<div className="checkbox">
 								{/* <label><input type="checkbox"/> Remember me</label> */}
 							</div>
-							<button type="submit" className="btn btn-success">Enter</button>
+							<button type="submit" className="btn btn-success">Enter</button> <br/> <br /><br/> <br />
 						</form>
-					</div>
+					</div> <br/> <br /><br/> <br />
 					<h2><b>{this.state.message}</b></h2>
 				</div>
 			</div>
