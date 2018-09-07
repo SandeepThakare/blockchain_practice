@@ -53,7 +53,6 @@ class App extends Component {
 			from: accounts[0],
 		});
 
-
 		const winner = await lottery.methods.winner().call();
 
 		this.setState({ message: 'Congrats winner has been picked. Please check your account balance.' })
